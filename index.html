@@ -1,51 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Registration Form</title>
-  <link rel="stylesheet" href="style.css"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Registration Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  form, table {
+    max-width: 600px;
+    margin-bottom: 30px;
+  }
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 8px 12px;
+    text-align: left;
+  }
+</style>
 </head>
 <body>
-  <h1>Registration Form</h1>
 
-  <form id="registrationForm">
-    <label>Name:</label>
-    <input type="text" id="name" required /><br />
+<h2>Registration Form</h2>
 
-    <label>Email:</label>
-    <input type="email" id="email" required /><br />
+<form id="registration-form">
+  <label for="name">Name:</label><br />
+  <input type="text" id="name" name="name" required /><br /><br />
 
-    <label>Password:</label>
-    <input type="password" id="password" required /><br />
+  <label for="email">Email:</label><br />
+  <input type="email" id="email" name="email" required /><br /><br />
 
-    <label>Date of Birth:</label>
-    <input type="date" id="dob" required /><br />
+  <label for="password">Password:</label><br />
+  <input type="password" id="password" name="password" required /><br /><br />
 
-    <label>
-      <input type="checkbox" id="acceptTerms" />
-      Accept Terms and Conditions
-    </label><br /><br />
+  <label for="dob">Date of Birth:</label><br />
+  <input type="date" id="dob" name="dob" required /><br /><br />
 
-    <button type="submit">Submit</button>
-  </form>
+  <label>
+    <input type="checkbox" id="acceptTerms" name="acceptTerms" />
+    Accept Terms and Conditions
+  </label><br /><br />
 
-  <h2>Entries</h2>
-  <table border="1" id="entriesTable">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Password</th>
-        <th>Dob</th>
-        <th>Accepted terms?</th>
-      </tr>
-    </thead>
-    <tbody id="tableBody">
-      <!-- Entries will be injected here -->
-    </tbody>
-  </table>
+  <button type="submit">Save</button>
+</form>
 
-  <script src="script.js"></script>
+<h2>Registered Users</h2>
+
+<table id="userTable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Dob</th>
+      <th>Accepted terms?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Entries will appear here -->
+  </tbody>
+</table>
+
+<script src="script.js"></script>
+
 </body>
 </html>
