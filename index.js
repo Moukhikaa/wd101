@@ -61,3 +61,27 @@ function showEntries() {
     tableBody.appendChild(row);
   });
 }
+document.getElementById('registration-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    let name = document.getElementById('name').value;
+    let email = document.getElementById('email').value;
+    let password = document.getElementById('password').value;
+    let dob = document.getElementById('dob').value;
+    let terms = document.getElementById('acceptTerms').checked;
+
+    if (!validateEmail(email)) {
+        alert("Invalid email!");
+        return;
+    }
+
+    if (!validateDOB(dob)) {
+        alert("You must be between 18 and 55 years old.");
+        return;
+    }
+
+    let user = { name, email, password, dob, terms };
+    saveToLocalStorage(user);
+    addUserToTable(user);
+    this.reset(); // reset form after submission
+});
