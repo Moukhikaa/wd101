@@ -1,8 +1,103 @@
-<html>  
-<head>  
-</head>  
-<body>  
-    <h1> WD101 registration form </h1>  
-    <p> Here is where I have kept the logic of my registration form. </p>  
-</body>  
-</html>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Form</title>
+  <style>
+    form, table {
+      margin: 20px;
+      font-family: Arial;
+    }
+    input {
+      margin: 5px;
+    }
+    th, td {
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+  <form id="registration-form">
+    <label>Name: <input type="text" id="name" required /></label><br>
+    <label>Email: <input type="email" id="email" required /></label><br>
+    <label>Password: <input type="password" id="password" required /></label><br>
+    <label>Date of Birth: <input type="date" id="dob" required /></label><br>
+    <label><input type="checkbox" id="acceptTerms" /> I accept the terms and conditions</label><br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Dob</th>
+        <th>Accepted terms?</th>
+      </tr>
+    </thead>
+    <tbody id="entries"></tbody>
+  </table>
+
+  <script>
+    const form = document.getElementById('registration-form');
+    const entries = JSON.parse(localStorage.getItem('user-entries')) || [];
+    const table = document.getElementById('entries');
+
+    function saveToLocalStorage(data) {
+      entries.push(data);
+      localStorage.setItem('user-entries', JSON.stringify(entries));
+    }
+
+    function showTable() {
+      table.innerHTML = '';
+      entries.forEach(entry => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${entry.name}</td>
+          <td>${entry.email}</td>
+          <td>${entry.password}</td>
+          <td>${entry.dob}</td>
+          <td>${entry.terms}</td>
+        `;
+        table.appendChild(row);
+      });
+    }
+
+    function isAgeValid(dob) {
+      const birthDate = new Date(dob);
+      const today = new Date();
+      const age = today.getFullYear() - birthDate.getFullYear();
+      const month = today.getMonth() - birthDate.getMonth();
+      const day = today.getDate() - birthDate.getDate();
+
+      if (month < 0 || (month === 0 && day < 0)) {
+        return age - 1 >= 18 && age - 1 <= 55;
+      }
+      return age >= 18 && age <= 55;
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const dob = document.getElementById('dob').value;
+      const terms = document.getElementById('acceptTerms').checked;
+
+      if (!isAgeValid(dob)) {
+        alert('Age must be between 18 and 55');
+        return;
+      }
+
+      const entry = { name, email, password, dob, terms };
+      saveToLocalStorage(entry);
+      showTable();
+      form.reset();
+    });
+
+    showTable();
+  </script>
+</body>
+</html>
