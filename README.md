@@ -36,7 +36,6 @@ DOB validation ensures that the user is between 18 and 55 years old. This is imp
 ## 📸 Screenshot
 
 ![Screenshot of the Registration Form](screenshot.png)  
-*(Optional: Add a screenshot to demonstrate UI)*
 
 ---
 
@@ -52,5 +51,5 @@ DOB validation ensures that the user is between 18 and 55 years old. This is imp
 ## 📬 Author
 
 **Your Name**  
-GitHub: [@your-username](https://github.com/your-username)
+GitHub: [@Moukhika](https://github.com/Moukhikaa)
 
