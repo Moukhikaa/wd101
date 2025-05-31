@@ -1,0 +1,17 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+form {
+  margin-bottom: 30px;
+}
+
+label {
+  display: inline-block;
+  width: 150px;
+}
+
+input {
+  margin-bottom: 10px;
+}
